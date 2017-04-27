@@ -1,0 +1,28 @@
+import structure5.*;
+
+public class Customer implements Comparable<Customer> {
+
+    // TODO: fill this class in, adding member variables and
+    // methods as needed
+
+    /**
+     * Creates a Customer that arrives at time step @eventTime and
+     * requires @serviceTime time steps to be satisfied after
+     * arriving at a service point.
+     */
+    public Customer(int evTime, int servTime) {
+	eventTime = evTime;
+	serviceTime = servTime
+    }
+
+    /**
+     * Compares Customers by arrival time
+     */
+    public int compareTo(Customer other) {
+	return (this.eventTime - other.eventTime);
+    }
+
+    public String toString() {
+	return ("{Arrival Time: " + Integer.toString(this.eventTime) + "Required Service Time: " + Integer.toString(this.serviceTime));
+    }
+}

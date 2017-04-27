@@ -1,0 +1,7 @@
+public class Main{
+
+    public static void main(String[] args){
+	BusinessSimulation line = new BusinessSimulation(10,3,10,2);
+	generateCustomerSequencez
+    }
+}
