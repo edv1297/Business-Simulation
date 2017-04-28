@@ -12,6 +12,22 @@ public class MultipleLine extends BusinessSimulation{
     public MultipleLine(int numCustomers, int numServicePoints,
 			int maxEventStart, int seed){
 	super(numCusomters, intNumServicePoints, maxEventStart, seed );
-	this.multipleLines = new SingleLine[NUM_OF_TELLERS];
+	this.multipleLines = new SingleLine[numServicePoints];
+    }
+
+    protected PriorityQueue<Customer> makeMultipleLines(){
+	this.customers = generateCustomer(this.numCustomers, this.maxEventStart, this.seed);
+	return this.customers;
+    }
+
+    protected boolean step(){
+	if(this.customers.isEmpty()){
+	    return true;
+	}
+	++this.time;
+	for (int teller= 0; teller< multipleLines; ++teller){
+	    
+	    if(multiplelines[teller].step())
+	}
     }
 }
