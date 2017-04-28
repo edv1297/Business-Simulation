@@ -12,8 +12,8 @@ public class SingleLine extends BusinessSimulation{
     }
 
     protected PriorityQueue<Customer> makeSingleLine (){
-	customers = generateCustomerSequence(this.numCustomers, this.maxEventStart, this.seed);
-	return customers;
+	this.customers = generateCustomerSequence(this.numCustomers, this.maxEventStart, this.seed);
+	return this.customers;
     }
 
     //single step
