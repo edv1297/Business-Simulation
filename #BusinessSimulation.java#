@@ -88,7 +88,9 @@ public abstract class BusinessSimulation {
      */
     public String toString() {
 	// TODO: modify if needed.
+	
 	String str = "Time: " + time + "\n";
+	
 	str = str + "Event Queue: ";
 	if (eventQueue != null) {
 	    str = str + eventQueue.toString();

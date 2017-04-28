@@ -16,6 +16,12 @@ public abstract class BusinessSimulation {
     /* seed for Random() so that simulation is repeatable */
     int seed;
 
+    int numCustomers;
+
+    int numTellers;
+
+    int maxEventStart;
+    
     /* Used to bound the range of service times that Customers require */
     static final int MIN_SERVICE_TIME = 1; //TODO: set appropraitely
     static final int MAX_SERVICE_TIME = 10; //TODO: set appropriately
@@ -29,11 +35,15 @@ public abstract class BusinessSimulation {
      * @maxEventStart latest timeStep that a Customer may appear in the simulation
      * @seed used to seed a Random() so that simulation is repeatable.
      */
+    //numServicePoints --> tellers
     public BusinessSimulation(int numCustomers, int numServicePoints,
 			      int maxEventStart, int seed) {
-	Random generator = new Random(seed);
-	int num1 = generator.nextInt();
-	int num2 = generator.nextInt();
+	VectorHeap<Customer>customers = new VectorHeap<Customer>();
+	this.time = 0;
+	this.seed = seed;
+	this.maxEventStart = maxEventStart;
+	this.numCustomers = numCustomers;
+	this.numTellers = numServicePoints;
     }
 
     /**
@@ -50,17 +60,11 @@ public abstract class BusinessSimulation {
 								   int maxEventStart,
 								   int seed) {
 	Random generator = new Random(seed);
-	for(int customer = 1; customer <= numCustomers; customer++){
-	    eventQueue.add(generator.nextInt(maxEventStart));
+	VectorHeap<Customer> evQ = new VectorHeap<Customer>();
+	for(int customer = 1; customer <= numCustomers; customer++){	    
+	    evQ.add(new Customer(generator.nextInt(maxEventStart), 10));
 	}			   
-	return eventQueue;
-	/*	Random generator = new Random(seed);
-	int num1 = generator.nextInt(maxEventStart);
-	int num2 = generator.nextInt(MAX_SERVICE_TIME);
-	for(int index = 0; index< numCustomers; index++){
-	    eventQueue.add(Customer(num1,num2));
-		}
-		return eventQueue;*/
+	return evQ;
     }
 
     /**
@@ -90,24 +94,15 @@ public abstract class BusinessSimulation {
 	    str = str + eventQueue.toString();
 	}
 	str = str + "\n";
-
 	if (servicePoints != null)  {
 	    for (Queue<Customer> sp : servicePoints) {
 		str = str + "Service Point: " + sp.toString() + "\n";
 	    }
 	}
-
 	return str;
     }
 
     public static void main(String[] args){
-	int seed = 7;
-	Random generator = new Random(seed);
-	int num1 = generator.nextInt(10);
-	int num2 = generator.nextInt(10);
-	for(int i = 0; i < 10; i++){
-	    System.out.println(generator.nextInt(10));
-	}
-	//	System.out.println(num1 + " " + num2);
+	
     }
 }

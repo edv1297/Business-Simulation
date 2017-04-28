@@ -12,8 +12,8 @@ public class SingleLine extends BusinessSimulation{
     }
 
     protected PriorityQueue<Customer> makeSingleLine (){
-	customers = generateCustomerSequence(this.numCustomers, this.maxEventStart, this.seed);
-	return customers;
+	this.customers = generateCustomerSequence(this.numCustomers, this.maxEventStart, this.seed);
+	return this.customers;
     }
 
     //single step
@@ -21,7 +21,7 @@ public class SingleLine extends BusinessSimulation{
     protected boolean step(){
 	if(this.customers.isEmpty()){
 	    return true;
-	}
+	} 
 	++this.time;
 	for(int teller = 0; teller < tellerList.length; teller++){
 	    if(--this.tellerList[teller].serviceTime == 0){
