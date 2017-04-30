@@ -3,30 +3,46 @@ import structure5.*;
 
 public class MultipleLine extends BusinessSimulation{
     
+    //all the customers
     PriorityQueue<Customer> customers = new VectorHeap<Customers>();
-    SingleLine[] multipleLines;
+    Vector<PriorityQueue> superMarket = new Vector<PriorityQueue>();
     
-    //not sure if want this to be final or modifiable by the user?
-    static final int NUM_OF_TELLERS = 3;
+    //stores the number of tellers for conveneince 
+    int numServicePoints;
     
-    public MultipleLine(int numCustomers, int numServicePoints,
-			int maxEventStart, int seed){
-	super(numCusomters, intNumServicePoints, maxEventStart, seed );
-	this.multipleLines = new SingleLine[numServicePoints];
-    }
+        public MultipleLine(int numCustomers, int numServicePoints,
+			    int maxEventStart, int seed){
+	    super(numCusomters, intNumServicePoints, maxEventStart, seed );
+	    
+	    this.numServicePoints = numServicePoints;
+	    
+	    while(numServicePoints>0){
+		superMarket.add(makeLines);
+		numServicePoints--;
+	    }
+	    
+	}
 
-    protected PriorityQueue<Customer> makeMultipleLines(){
+    //this is wrong need to fix asap
+    protected PriorityQueue<Customer> makeLines(){
 	this.customers = generateCustomer(this.numCustomers, this.maxEventStart, this.seed);
 	return this.customers;
     }
 
     protected boolean step(){
-	if(this.customers.isEmpty()){
+	Iterator<PriorityQueue<Customer>> it = new Iterator(superMarket);
+	while(it.hasNext()){
+	    PriorityQueue<Customer> temp = new VectorHeap()<>
+	    if(--it.next().getFirst().serviceTime==0){
+		
+	    }
+	}
+	if(this.superMarket.isEmpty()){
 	    return true;
 	}
 	++this.time;
 	for (int teller= 0; teller< multipleLines; ++teller){
-	    
+	    multipleLines[teller]
 	    if(multiplelines[teller].step())
 	}
     }

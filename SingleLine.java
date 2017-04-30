@@ -9,7 +9,15 @@ public class SingleLine extends BusinessSimulation{
     public SingleLine(int numCustomers, int numServicePoints, int maxEventStart, int seed){
 	super(numCustomers, numServicePoints, maxEventStart, seed);
 	this.tellerList = new Customer[numServicePoints];
+<<<<<<< HEAD
 	this.customers = generateCustomerSequence(numCustomers, maxEventStart, seed);
+=======
+    }
+
+    protected PriorityQueue<Customer> makeSingleLine (){
+	this.customers = generateCustomerSequence(this.numCustomers, this.maxEventStart, this.seed);
+	return this.customers;
+>>>>>>> 147f9cff447eafeda5fa044306b6a6e7b61ce562
     }
 
     //single step
@@ -17,6 +25,7 @@ public class SingleLine extends BusinessSimulation{
     public boolean step(){
 	if(this.customers.isEmpty()){
 	    return true;
+<<<<<<< HEAD
 	}
 	else if(this.time == 0){
 	    for(int teller = 0; teller< this.tellerList.length; teller++){
@@ -25,6 +34,10 @@ public class SingleLine extends BusinessSimulation{
 		this.customers.remove();
 		 }
 	}
+=======
+	} 
+	++this.time;
+>>>>>>> 147f9cff447eafeda5fa044306b6a6e7b61ce562
 	for(int teller = 0; teller < tellerList.length; teller++){
 	    this.tellerList[teller].serviceTime -= 1;
 	    if(this.tellerList[teller].serviceTime == 0){
